@@ -1,0 +1,50 @@
+[
+  {
+    "timestamp": "2025-07-05T13:18:00.595164",
+    "depth": 0,
+    "node_id": "9502BF56",
+    "case_creation": false,
+    "user_query": "where is my bus right now",
+    "assistant_response": "I can only answer questions related to the chosen TIN/booking only, which is - TU5W76568492. Please choose the relevant booking from the menu."
+  },
+  {
+    "timestamp": "2025-07-05T13:18:05.897520",
+    "depth": 1,
+    "node_id": "181C5B5C",
+    "case_creation": false,
+    "user_query": "Can you please confirm the refund policy for this booking?",
+    "assistant_response": "I can connect you to a support expert who can assist you further with your refund issue. Would you like me to do that?"
+  },
+  {
+    "timestamp": "2025-07-05T13:18:12.219587",
+    "depth": 2,
+    "node_id": "36318F8B",
+    "case_creation": false,
+    "user_query": "Yes, please connect me to a support expert.",
+    "assistant_response": "To help you further, we need to connect you with our customer support expert. Do you wish to chat with the support expert?"
+  },
+  {
+    "timestamp": "2025-07-05T13:18:22.189792",
+    "depth": 3,
+    "node_id": "37F91216",
+    "case_creation": false,
+    "user_query": "Yes, please connect me as soon as possible.",
+    "assistant_response": ""
+  },
+  {
+    "timestamp": "2025-07-05T13:18:27.350422",
+    "depth": 4,
+    "node_id": "78DC902B",
+    "case_creation": false,
+    "user_query": "My train hasn't reached yet. What is causing the delay?",
+    "assistant_response": "I can only answer questions related to the chosen TIN/booking only, which is - TU5W76568492. Please choose the relevant booking from the menu."
+  },
+  {
+    "timestamp": "2025-07-05T13:18:33.180763",
+    "depth": 5,
+    "node_id": "6BDB8018",
+    "case_creation": false,
+    "user_query": "I received an email stating the refund has been processed for TU5W76568492, but the amount is incorrect. Can you explain?",
+    "assistant_response": "I can connect you to a support expert who can assist you further with your refund issue. Would you like me to do that?"
+  }
+]

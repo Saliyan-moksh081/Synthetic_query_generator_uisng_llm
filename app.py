@@ -390,6 +390,14 @@ def main():
         st.header("⚙️ Configuration")
         
         st.session_state.max_depth = st.slider("Max Conversation Depth", min_value=1, max_value=15, value=6)
+        # Order ID input
+        st.subheader("🎫 Order Configuration")
+        order_id = st.text_input(
+            "Order ID/UUID:",
+            value="b5c464b033f7e0067b069bf904020100",
+            placeholder="Enter order UUID here...",
+            help="Enter the order UUID for testing specific tickets"
+        )
         
         st.header("📋 Flow Options")
         flow_options = {
@@ -446,13 +454,16 @@ def main():
         
         with button_col1:
             if st.button("▶️ Start Predefined Flow", type="primary", disabled=st.session_state.flow_running):
-                if selected_flow:
+                if selected_flow and order_id.strip():
                     initial_query = flow_options[selected_flow]
                     st.session_state.conversation_data = []
                     st.session_state.current_depth = 0
                     st.session_state.flow_running = True
                     st.session_state.initial_query = initial_query
+                    st.session_state.order_id = order_id.strip()
                     st.rerun()
+                elif not order_id.strip():
+                    st.error("Please enter a valid Order ID/UUID to start the flow.")
         
         with button_col2:
             if st.button("🔧 Start Custom Flow", disabled=st.session_state.flow_running or not custom_query.strip()):
@@ -461,7 +472,11 @@ def main():
                     st.session_state.current_depth = 0
                     st.session_state.flow_running = True
                     st.session_state.initial_query = custom_query.strip()
+                    st.session_state.order_id = order_id.strip()
                     st.rerun()
+                elif not order_id.strip():
+                    st.error("Please enter an Order ID")
+                    
         
         with button_col3:
             if st.button("🛑 Stop & Reset"):
@@ -470,10 +485,12 @@ def main():
                 st.session_state.flow_running = False
                 if 'initial_query' in st.session_state:
                     del st.session_state.initial_query
+                if 'order_id' in st.session_state:
+                    del st.session_state.order_id
                 st.rerun()
         
         # Process conversation flow
-        if st.session_state.flow_running and 'initial_query' in st.session_state:
+        if st.session_state.flow_running and 'initial_query' in st.session_state and 'order_id' in st.session_state:
             
             # Build conversation turn by turn
             if st.session_state.current_depth == 0:
@@ -514,6 +531,9 @@ def main():
         # Display conversation
         if st.session_state.conversation_data:
             st.header("💬 Conversation Flow")
+
+            if 'order_id' in st.session_state:
+                st.info(f"🎫 Using Order ID: {st.session_state.order_id}")
             
             for i, turn in enumerate(st.session_state.conversation_data):
                 with st.expander(f"Turn {turn['depth'] + 1} - {turn['node_id']}", expanded=True):
